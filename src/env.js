@@ -12,10 +12,11 @@ export const env = createEnv({
       .enum(["development", "test", "production"])
       .default("development"),
     SINGLSTORE_HOST: z.string(),
-    SINGLSTORE_PORT: z.number(),
+    SINGLSTORE_PORT: z.string(),
     SINGLSTORE_USER: z.string(),
     SINGLSTORE_PASSWORD: z.string(),
     SINGLSTORE_DATABASE: z.string(),
+    CLERK_SECRET_KEY: z.string(),
   },
 
   /**
@@ -25,6 +26,7 @@ export const env = createEnv({
    */
   client: {
     // NEXT_PUBLIC_CLIENTVAR: z.string(),
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string(),
   },
 
   /**
@@ -39,6 +41,8 @@ export const env = createEnv({
     SINGLSTORE_USER: process.env.SINGLSTORE_USER,
     SINGLSTORE_PASSWORD: process.env.SINGLSTORE_PASSWORD,
     SINGLSTORE_DATABASE: process.env.SINGLSTORE_DATABASE,
+    CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY,
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**
