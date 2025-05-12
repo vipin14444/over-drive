@@ -11,11 +11,11 @@ export const env = createEnv({
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
-    SINGLSTORE_HOST: z.string(),
-    SINGLSTORE_PORT: z.string(),
-    SINGLSTORE_USER: z.string(),
-    SINGLSTORE_PASSWORD: z.string(),
-    SINGLSTORE_DATABASE: z.string(),
+    SINGLESTORE_HOST: z.string(),
+    SINGLESTORE_PORT: z.string(),
+    SINGLESTORE_USER: z.string(),
+    SINGLESTORE_PASSWORD: z.string(),
+    SINGLESTORE_DATABASE: z.string(),
     CLERK_SECRET_KEY: z.string(),
   },
 
@@ -36,11 +36,11 @@ export const env = createEnv({
   runtimeEnv: {
     DATABASE_URL: process.env.DATABASE_URL,
     NODE_ENV: process.env.NODE_ENV,
-    SINGLSTORE_HOST: process.env.SINGLSTORE_HOST,
-    SINGLSTORE_PORT: process.env.SINGLSTORE_PORT,
-    SINGLSTORE_USER: process.env.SINGLSTORE_USER,
-    SINGLSTORE_PASSWORD: process.env.SINGLSTORE_PASSWORD,
-    SINGLSTORE_DATABASE: process.env.SINGLSTORE_DATABASE,
+    SINGLESTORE_HOST: process.env.SINGLESTORE_HOST,
+    SINGLESTORE_PORT: process.env.SINGLESTORE_PORT,
+    SINGLESTORE_USER: process.env.SINGLESTORE_USER,
+    SINGLESTORE_PASSWORD: process.env.SINGLESTORE_PASSWORD,
+    SINGLESTORE_DATABASE: process.env.SINGLESTORE_DATABASE,
     CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY,
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,

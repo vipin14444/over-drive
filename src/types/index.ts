@@ -1,6 +1,6 @@
 export type FileModel = {
-  id: number;
-  parentId: number | null; // null for root folders
+  id: bigint;
+  parentId: bigint; // null for root folders
   name: string;
   type:
     | "folder"
@@ -9,18 +9,21 @@ export type FileModel = {
     | "image"
     | "video"
     | "audio"
-    | "other";
-  size: string; // e.g., "2.5 GB"
-  createdAt: string; // e.g., "2023-10-01"
-  updatedAt: string; // e.g., "2023-10-01"
-  owner: string; // e.g., "ownerId"
+    | "file";
+  size: bigint | null; // e.g., "2.5 GB"
+  createdAt: Date; // e.g., "2023-10-01"
+  updatedAt: Date; // e.g., "2023-10-01"
+  owner: bigint; // e.g., "ownerId"
 };
 
 export type FolderModel = {
-  id: number;
-  parentId: number | null; // null for root folders
+  id: bigint;
+  parentId: bigint; // null for root folders
   name: string;
-  createdAt: string; // e.g., "2023-10-01"
-  updatedAt: string; // e.g., "2023-10-01"
-  owner: string; // e.g., "ownerId"
+  createdAt: Date; // e.g., "2023-10-01"
+  updatedAt: Date; // e.g., "2023-10-01"
+  owner: bigint; // e.g., "ownerId"
 };
+
+export type InsertFileModel = Omit<FileModel, "id" | "createdAt" | "updatedAt">;
+export type InsertFolderModel = Omit<FolderModel, "id" | "createdAt" | "updatedAt">;
