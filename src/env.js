@@ -11,6 +11,11 @@ export const env = createEnv({
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
+    SINGLSTORE_HOST: z.string(),
+    SINGLSTORE_PORT: z.number(),
+    SINGLSTORE_USER: z.string(),
+    SINGLSTORE_PASSWORD: z.string(),
+    SINGLSTORE_DATABASE: z.string(),
   },
 
   /**
@@ -29,6 +34,11 @@ export const env = createEnv({
   runtimeEnv: {
     DATABASE_URL: process.env.DATABASE_URL,
     NODE_ENV: process.env.NODE_ENV,
+    SINGLSTORE_HOST: process.env.SINGLSTORE_HOST,
+    SINGLSTORE_PORT: process.env.SINGLSTORE_PORT,
+    SINGLSTORE_USER: process.env.SINGLSTORE_USER,
+    SINGLSTORE_PASSWORD: process.env.SINGLSTORE_PASSWORD,
+    SINGLSTORE_DATABASE: process.env.SINGLSTORE_DATABASE,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**
