@@ -3,5 +3,5 @@ Your one stop drive solution.
 
 ## Tasks
 - [x] Add auth
-- [ ] Add database connectivity
+- [x] Add database connectivity
 - [ ] Add file upload
