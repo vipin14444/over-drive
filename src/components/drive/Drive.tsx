@@ -9,7 +9,7 @@ export default function DriveExplorer({
   files,
 }: {
   folders: FolderModel[];
-  files: FileModel[];
+files: FileModel[];
 }) {
   const isEmpty = folders.length === 0 && files.length === 0;
   return (
