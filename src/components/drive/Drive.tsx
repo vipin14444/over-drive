@@ -1,15 +1,18 @@
+"use client";
+
 import FileRow from "~/app/drive/my-drive/file-row";
 import FolderRow from "~/app/drive/my-drive/folder-row";
-import { MUTATIONS } from "~/server/db/mutations";
 import type { FileModel, FolderModel } from "~/types";
 import FloatingUpload from "./FloatingUpload";
 
 export default function DriveExplorer({
+  folderId,
   folders,
   files,
 }: {
   folders: FolderModel[];
-files: FileModel[];
+  files: FileModel[];
+  folderId: number;
 }) {
   const isEmpty = folders.length === 0 && files.length === 0;
   return (
@@ -27,19 +30,8 @@ files: FileModel[];
           <FileRow key={file.id} file={file} />
         ))}
       </section>
-      <section className="divide-y divide-[rgba(255,255,255,0.2)] rounded-2xl bg-neutral-950 p-4 text-gray-200">
-        <form
-          action={async () => {
-            "use server";
-            const response = await MUTATIONS.insertMockData();
-            console.log("Response:", response);
-          }}
-        >
-          <button type="submit">Insert Mock Data</button>
-        </form>
-      </section>
 
-      <FloatingUpload />
+      <FloatingUpload folderId={folderId} />
     </main>
   );
 }

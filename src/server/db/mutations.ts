@@ -1,4 +1,9 @@
-import type { InsertFileModel, InsertFolderModel } from "~/types";
+import type {
+  InsertFileModel,
+  InsertFileRequest,
+  InsertFolderModel,
+  InsertFolderRequest,
+} from "~/types";
 import { db } from ".";
 import { fileTable, folderTable } from "./schema";
 
@@ -8,22 +13,22 @@ export const MUTATIONS = {
       {
         parentId: BigInt(0),
         name: "My Drive",
-        owner: BigInt(0),
+        owner: "",
       },
       {
         parentId: BigInt(0),
         name: "Shared with me",
-        owner: BigInt(0),
+        owner: "",
       },
       {
         parentId: BigInt(0),
         name: "Recent files",
-        owner: BigInt(0),
+        owner: "",
       },
       {
         parentId: BigInt(0),
         name: "Starred files",
-        owner: BigInt(0),
+        owner: "",
       },
     ];
 
@@ -33,35 +38,40 @@ export const MUTATIONS = {
         name: "Document 1",
         type: "document",
         size: BigInt(1024 * 1024), // 1 MB
-        owner: BigInt(0),
+        owner: "",
+        url: "1",
       },
       {
         parentId: BigInt(0),
         name: "Image 1",
         type: "image",
         size: BigInt(1024 * 1024), // 1 MB
-        owner: BigInt(0),
+        owner: "",
+        url: "1",
       },
       {
         parentId: BigInt(0),
         name: "Video 1",
         type: "video",
         size: BigInt(1024 * 1024), // 1 MB
-        owner: BigInt(0),
+        owner: "",
+        url: "1",
       },
       {
         parentId: BigInt(0),
         name: "Audio 1",
         type: "audio",
         size: BigInt(1024 * 1024), // 1 MB
-        owner: BigInt(0),
+        owner: "",
+        url: "1",
       },
       {
         parentId: BigInt(0),
         name: "Presentation 1",
         type: "presentation",
         size: BigInt(1024 * 1024), // 1 MB
-        owner: BigInt(0),
+        owner: "",
+        url: "1",
       },
     ];
 
@@ -75,5 +85,26 @@ export const MUTATIONS = {
       folders: foldersResponse,
       files: filesResponse,
     };
+  },
+
+  insertFile: async (file: InsertFileRequest) => {
+    const insertFileModel: InsertFileModel = {
+      ...file,
+      parentId: BigInt(file.parentId),
+      size: BigInt(file.size),
+    };
+    const response = await db.insert(fileTable).values(insertFileModel);
+    console.log("Inserted file:", response);
+    return response;
+  },
+
+  insertFolder: async (folder: InsertFolderRequest) => {
+    const insertFolderModel: InsertFolderModel = {
+      ...folder,
+      parentId: BigInt(folder.parentId),
+    };
+    const response = await db.insert(folderTable).values(insertFolderModel);
+    console.log("Inserted folder:", response);
+    return response;
   },
 };

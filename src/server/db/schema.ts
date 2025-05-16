@@ -17,10 +17,13 @@ export const folderTable = createTable(
     name: text("name").notNull().default(""),
     createdAt: datetime("created_at").notNull().default(new Date()),
     updatedAt: datetime("updated_at").notNull().default(new Date()),
-    owner: bigint("owner", { mode: "bigint" }).notNull(),
+    owner: text("owner").notNull(),
   },
   (t) => {
-    return [index("parentId_index").on(t.parentId)];
+    return [
+      index("parentId_index").on(t.parentId),
+      index("owner_index").on(t.owner),
+    ];
   },
 );
 
@@ -34,9 +37,13 @@ export const fileTable = createTable(
     size: bigint("size", { mode: "bigint" }),
     createdAt: datetime("created_at").notNull().default(new Date()),
     updatedAt: datetime("updated_at").notNull().default(new Date()),
-    owner: bigint("owner", { mode: "bigint" }).notNull(),
+    owner: text("owner").notNull(),
+    url: text("url").notNull(),
   },
   (t) => {
-    return [index("parentId_index").on(t.parentId)];
+    return [
+      index("parentId_index").on(t.parentId),
+      index("owner_index").on(t.owner),
+    ];
   },
 );

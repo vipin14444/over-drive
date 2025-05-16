@@ -6,11 +6,10 @@ export default async function MyDrivePage({
 }: {
   params: { folderId: string };
 }) {
-  const { folders, files } = await QUERIES.getDriveExplorerData(
-    parseInt(folderId),
-  );
+  const FOLDER_ID = parseInt(folderId);
+  const { folders, files } = await QUERIES.getDriveExplorerData(FOLDER_ID);
   console.log("Folders:", folders);
   console.log("Files:", files);
 
-  return <DriveExplorer folders={folders} files={files} />;
+  return <DriveExplorer folders={folders} files={files} folderId={FOLDER_ID} />;
 }

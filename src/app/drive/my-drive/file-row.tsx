@@ -3,7 +3,7 @@ import type { FileModel } from "~/types";
 import { DATE_UTILS } from "~/utils/date-utils";
 
 export default function FileRow({ file }: { file: FileModel }) {
-  const { id, name, updatedAt, size } = file;
+  const { name, updatedAt, size } = file;
   const formattedDate = DATE_UTILS.formatDate(updatedAt);
   return (
     <div className="flex items-center gap-4 p-3">

@@ -1,21 +1,42 @@
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import { db } from ".";
 import { fileTable, folderTable } from "./schema";
 import type { FileModel, FolderModel } from "~/types";
+import { auth } from "@clerk/nextjs/server";
 
 export const QUERIES = {
   getFolders: async (parentId: number) => {
+    const user = await auth();
+    if (!user.userId) {
+      throw new Error("User not authenticated");
+    }
+
     return db
       .select()
       .from(folderTable)
-      .where(eq(folderTable.parentId, BigInt(parentId)))
+      .where(
+        and(
+          eq(folderTable.owner, user.userId),
+          eq(folderTable.parentId, BigInt(parentId)),
+        ),
+      )
       .then((res) => res as FolderModel[]);
   },
   getFiles: async (parentId: number) => {
+    const user = await auth();
+    if (!user.userId) {
+      throw new Error("User not authenticated");
+    }
+
     return db
       .select()
       .from(fileTable)
-      .where(eq(fileTable.parentId, BigInt(parentId)))
+      .where(
+        and(
+          eq(fileTable.owner, user.userId),
+          eq(fileTable.parentId, BigInt(parentId)),
+        ),
+      )
       .then((res) => res as FileModel[]);
   },
   getDriveExplorerData: async (parentId: number) => {

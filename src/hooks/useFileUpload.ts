@@ -4,11 +4,11 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { useState } from "react";
 import { storage } from "~/lib/firebase";
 
-export function useFirebaseUpload({
+export function useFileUpload({
   onUploadComplete,
   onUploadError,
 }: {
-  onUploadComplete?: (url: string) => void;
+  onUploadComplete?: (url: string, file: File) => void;
   onUploadError?: (error: string) => void;
 }) {
   const [uploadProgress, setUploadProgress] = useState<number>(0);
@@ -64,7 +64,7 @@ export function useFirebaseUpload({
           .then((downloadURL) => {
             console.log("File available at", downloadURL);
             setDownloadURL(downloadURL);
-            onUploadComplete?.(downloadURL);
+            onUploadComplete?.(downloadURL, file);
             setUploaded(true);
           })
           .catch((err) => {
