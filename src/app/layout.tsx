@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <Providers>
       <html lang="en" className={`${geist.variable}`}>
-        <body>{children}</body>
+        <body className="bg-neutral-900">{children}</body>
       </html>
     </Providers>
   );

@@ -24,6 +24,7 @@
     "@libsql/client": "^0.14.0",
     "@t3-oss/env-nextjs": "^0.12.0",
     "drizzle-orm": "^0.43.1",
+    "firebase": "^11.7.1",
     "moment": "^2.30.1",
     "mysql2": "^3.14.1",
     "next": "^15.2.3",
