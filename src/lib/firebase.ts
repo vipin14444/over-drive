@@ -9,7 +9,7 @@ import { env } from "~/env";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  apiKey: env.NEXT_PUBLIC_FIREBASE_API_KEY as string,
   authDomain: env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN as string,
   projectId: env.NEXT_PUBLIC_FIREBASE_PROJECT_ID as string,
   storageBucket: env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET as string,
