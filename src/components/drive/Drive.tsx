@@ -1,22 +1,26 @@
 "use client";
 
-import FileRow from "~/app/drive/my-drive/file-row";
-import FolderRow from "~/app/drive/my-drive/folder-row";
+import FileRow from "~/components/drive/file-row";
+import FolderRow from "~/components/drive/folder-row";
 import type { FileModel, FolderModel } from "~/types";
-import FloatingUpload from "./FloatingUpload";
+import FloatingUpload from "./floating-upload";
+import Breadcrumbs from "./breadcrumbs";
 
 export default function DriveExplorer({
   folderId,
+  breadcrumbs,
   folders,
   files,
 }: {
   folders: FolderModel[];
+  breadcrumbs: FolderModel[];
   files: FileModel[];
   folderId: number;
 }) {
   const isEmpty = folders.length === 0 && files.length === 0;
   return (
-    <main className="min-h-screen space-y-4 bg-neutral-900 p-4 text-white">
+    <div className="space-y-4 bg-neutral-900 p-4 text-white">
+      <Breadcrumbs breadcrumbs={breadcrumbs} />
       <section className="divide-y divide-[rgba(255,255,255,0.2)] rounded-2xl bg-neutral-950 p-4 text-gray-200">
         {isEmpty && (
           <div className="flex h-full items-center justify-center">
@@ -32,6 +36,6 @@ export default function DriveExplorer({
       </section>
 
       <FloatingUpload folderId={folderId} />
-    </main>
+    </div>
   );
 }

@@ -16,7 +16,6 @@ export default function FloatingUpload({ folderId }: { folderId: number }) {
   const { userId } = useAuth();
   const router = useRouter();
   const [mode, setMode] = useState<"none" | "file" | "folder">("none");
-  console.log({ userId });
   const [folderName, setFolderName] = useState("");
 
   const onUploadComplete = async (url: string, file: File) => {

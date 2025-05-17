@@ -22,6 +22,7 @@ export const QUERIES = {
       )
       .then((res) => res as FolderModel[]);
   },
+
   getFiles: async (parentId: number) => {
     const user = await auth();
     if (!user.userId) {
@@ -39,13 +40,49 @@ export const QUERIES = {
       )
       .then((res) => res as FileModel[]);
   },
+
+  getBreadcrumbs: async (folderId: number) => {
+    const user = await auth();
+    if (!user.userId) {
+      throw new Error("User not authenticated");
+    }
+    const breadcrumbs: FolderModel[] = [];
+
+    let currentFolderId = folderId;
+    while (currentFolderId) {
+      const folder = await db
+        .select()
+        .from(folderTable)
+        .where(
+          and(
+            eq(folderTable.owner, user.userId),
+            eq(folderTable.id, BigInt(currentFolderId)),
+          ),
+        )
+        .then((res) => res[0] as FolderModel);
+
+      if (!folder) {
+        break;
+      }
+
+      breadcrumbs.unshift(folder);
+      currentFolderId = Number(folder.parentId);
+    }
+
+    return breadcrumbs;
+  },
+
   getDriveExplorerData: async (parentId: number) => {
-    const folders = await QUERIES.getFolders(parentId);
-    const files = await QUERIES.getFiles(parentId);
+    const [folders, files, breadcrumbs] = await Promise.all([
+      QUERIES.getFolders(parentId),
+      QUERIES.getFiles(parentId),
+      QUERIES.getBreadcrumbs(parentId),
+    ]);
 
     return {
       folders,
       files,
+      breadcrumbs,
     };
   },
 };
