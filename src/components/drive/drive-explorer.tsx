@@ -5,6 +5,7 @@ import FolderRow from "~/components/drive/folder-row";
 import type { FileModel, FolderModel } from "~/types";
 import FloatingUpload from "./floating-upload";
 import Breadcrumbs from "./breadcrumbs";
+import Container from "../shared/container";
 
 export default function DriveExplorer({
   folderId,
@@ -19,7 +20,7 @@ export default function DriveExplorer({
 }) {
   const isEmpty = folders.length === 0 && files.length === 0;
   return (
-    <div className="space-y-4 bg-neutral-900 p-4 text-white">
+    <Container className="space-y-4 bg-neutral-900 p-4 text-white">
       <Breadcrumbs breadcrumbs={breadcrumbs} />
       <section className="divide-y divide-[rgba(255,255,255,0.2)] rounded-2xl bg-neutral-950 p-4 text-gray-200">
         {isEmpty && (
@@ -36,6 +37,6 @@ export default function DriveExplorer({
       </section>
 
       <FloatingUpload folderId={folderId} />
-    </div>
+    </Container>
   );
 }

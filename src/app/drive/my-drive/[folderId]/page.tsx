@@ -1,5 +1,5 @@
 import { QUERIES } from "~/server/db/queries";
-import DriveExplorer from "~/components/drive/drive";
+import DriveExplorer from "~/components/drive/drive-explorer";
 
 export default async function MyDrivePage({
   params,
