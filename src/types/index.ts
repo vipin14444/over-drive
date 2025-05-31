@@ -9,23 +9,23 @@ export type DriveFileType =
 
 export type FileModel = {
   id: bigint;
-  parentId: bigint; // null for root folders
+  parentId: bigint;
   name: string;
   type: DriveFileType;
-  size: bigint | null; // e.g., "2.5 GB"
-  createdAt: Date; // e.g., "2023-10-01"
-  updatedAt: Date; // e.g., "2023-10-01"
-  owner: string; // e.g., "ownerId"
-  url: string; // e.g., "https://example.com/file"
+  size: bigint | null;
+  createdAt: Date;
+  updatedAt: Date;
+  owner: string;
+  url: string;
 };
 
 export type FolderModel = {
   id: bigint;
-  parentId: bigint; // null for root folders
+  parentId: bigint;
   name: string;
-  createdAt: Date; // e.g., "2023-10-01"
-  updatedAt: Date; // e.g., "2023-10-01"
-  owner: string; // e.g., "ownerId"
+  createdAt: Date;
+  updatedAt: Date;
+  owner: string;
 };
 
 export type InsertFileModel = Omit<FileModel, "id" | "createdAt" | "updatedAt">;

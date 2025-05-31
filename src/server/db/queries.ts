@@ -3,12 +3,13 @@ import { db } from ".";
 import { fileTable, folderTable } from "./schema";
 import type { FileModel, FolderModel } from "~/types";
 import { auth } from "@clerk/nextjs/server";
+import { UnauthorizedError } from "~/types/error";
 
 export const QUERIES = {
   getFolders: async (parentId: number) => {
     const user = await auth();
     if (!user.userId) {
-      throw new Error("User not authenticated");
+      throw new UnauthorizedError();
     }
 
     return db
@@ -26,7 +27,7 @@ export const QUERIES = {
   getFiles: async (parentId: number) => {
     const user = await auth();
     if (!user.userId) {
-      throw new Error("User not authenticated");
+      throw new UnauthorizedError();
     }
 
     return db
@@ -44,7 +45,7 @@ export const QUERIES = {
   getBreadcrumbs: async (folderId: number) => {
     const user = await auth();
     if (!user.userId) {
-      throw new Error("User not authenticated");
+      throw new UnauthorizedError();
     }
     const breadcrumbs: FolderModel[] = [];
 

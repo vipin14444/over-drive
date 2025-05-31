@@ -4295,6 +4295,13 @@ react-dom@^19.0.0:
   dependencies:
     scheduler "^0.26.0"
 
+react-haiku@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/react-haiku/-/react-haiku-2.3.0.tgz#44bee7579ac44c36158792c5f82dc47d5b366743"
+  integrity sha512-4bDW2uEQdHwjUbxWzTtUsO02Oic9fo+B9RlYDsz1zkYa7S/BvwRcIrzVPmNJfQLlGAj5xnCJi2qTEWlGsRHWBw==
+  dependencies:
+    react ">=16.8.0"
+
 react-icons@^5.5.0:
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-5.5.0.tgz#8aa25d3543ff84231685d3331164c00299cdfaf2"
@@ -4332,7 +4339,7 @@ react-style-singleton@^2.2.2, react-style-singleton@^2.2.3:
     get-nonce "^1.0.0"
     tslib "^2.0.0"
 
-react@^19.0.0:
+react@>=16.8.0, react@^19.0.0:
   version "19.1.0"
   resolved "https://registry.yarnpkg.com/react/-/react-19.1.0.tgz#926864b6c48da7627f004795d6cce50e90793b75"
   integrity sha512-FS+XFBNvn3GTAWq26joslQgWNoFu08F4kl0J4CgdNKADkdSGXQyTCnKteIAJy96Br6YbpEU1LSzV5dYtjMkMDg==

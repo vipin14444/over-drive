@@ -47,3 +47,17 @@ export const fileTable = createTable(
     ];
   },
 );
+
+export const userTable = createTable(
+  "user_table",
+  {
+    id: bigint("id", { mode: "bigint" }).primaryKey().autoincrement(),
+    uid: text("uid").notNull(),
+    storageUsed: bigint("storageUsed", { mode: "bigint" }).notNull(),
+    createdAt: datetime("created_at").notNull().default(new Date()),
+    updatedAt: datetime("updated_at").notNull().default(new Date()),
+  },
+  (t) => {
+    return [index("uid").on(t.uid)];
+  },
+);
